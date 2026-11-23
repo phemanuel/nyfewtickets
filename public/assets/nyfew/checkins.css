@@ -1,0 +1,18 @@
+/* NYFEW Tickets — Phase 4 additive check-in styles */
+.checkin-metrics {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:20px 0}
+.checkin-metrics h2 {font-size:2rem;margin:14px 0 0;color:#f4df96}
+.checkin-search {margin-bottom:20px}
+.checkin-search form {display:grid;grid-template-columns:minmax(160px,1fr) minmax(200px,2fr) auto;gap:16px;align-items:end}
+.checkin-search .btn {min-height:48px;white-space:nowrap}
+.checkin-detail {max-width:900px;margin:20px 0}
+.checkin-back {display:inline-block;color:#d7b768;text-decoration:none;margin:8px 0}
+.checkin-result {display:grid;gap:6px;padding:20px;border:1px solid;border-radius:12px;margin:20px 0}
+.checkin-result.valid {background:#16291c;border-color:#2f7543;color:#d5f0db}
+.checkin-result.used {background:#332719;border-color:#8f672b;color:#ffe6a4}
+.checkin-result.invalid {background:#341b1b;border-color:#9c4444;color:#ffd5d5}
+.checkin-result strong {font-size:1.05rem;letter-spacing:.06em}
+.checkin-identity {display:flex;gap:20px;align-items:center;padding:20px 0}
+.checkin-avatar {flex:0 0 72px;width:72px;height:72px;border-radius:16px;background:#372d17;border:1px solid #b99c5a;color:#f4df96;display:grid;place-items:center;font-size:2rem;font-weight:700}
+.checkin-identity h2 {margin:0 0 8px}
+.checkin-override {margin-top:28px;border-top:1px solid #55472a;padding-top:20px}
+@media(max-width:850px){.checkin-search form{grid-template-columns:1fr}.checkin-metrics{grid-template-columns:1fr}.checkin-identity{align-items:flex-start}}

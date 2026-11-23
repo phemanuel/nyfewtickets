@@ -1,0 +1,17 @@
+/* Additive styles for staff management and permission matrix. Uses existing black/gold tokens. */
+.access-filter{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:23px}
+.access-filter input{flex:1;min-width:210px;max-width:460px}
+.access-badges{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.access-pill{display:inline-block;border:1px solid #6f5b32;background:#282419;border-radius:999px;color:#e6c87b;font-size:.73rem;padding:5px 10px;white-space:nowrap}
+.access-text-link{color:#eed18a;font-weight:700;text-decoration:none}.access-text-link:hover{text-decoration:underline}
+.access-section-title{border-top:1px solid var(--line,#36332d);margin-top:10px;padding-top:25px;margin-bottom:18px}.access-section-title h3{margin-bottom:5px}.access-section-title p{color:var(--muted,#a6a093);font-size:.84rem}
+.access-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.access-choice{display:flex;align-items:flex-start;gap:12px;padding:15px;border:1px solid #484131;border-radius:12px;background:#1d1e19;cursor:pointer;min-width:0;margin:0}
+.access-choice:has(input:checked){background:#302b1e;border-color:#c4a35b}
+.access-choice input[type=checkbox]{appearance:auto;accent-color:#d7b768;margin-top:3px;width:17px;height:17px;min-width:17px;min-height:17px;padding:0;flex-shrink:0}
+.access-choice strong{display:block;color:var(--ivory,#f9f4e8);font-size:.86rem;overflow-wrap:anywhere}.access-choice small{display:block;color:var(--muted,#a6a093);margin-top:5px;font-size:.74rem}
+.access-permission-group{border:0;border-top:1px solid #39362d;margin:17px 0;padding:19px 0 0}.access-permission-group legend{padding:0 12px 0 0;color:#f4df96;font-weight:800}
+.access-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:30px}
+.access-danger-zone{display:flex;align-items:center;justify-content:space-between;gap:15px;border-top:1px solid #644136;padding-top:22px;margin-top:28px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:680px){.access-choice-grid{grid-template-columns:1fr}.access-danger-zone{align-items:flex-start;flex-direction:column}}
