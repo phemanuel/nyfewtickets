@@ -36,3 +36,6 @@ require __DIR__.'/admin-access.php';
 require __DIR__.'/ticket-categories.php';
 require __DIR__.'/ticket-invitations.php';
 require __DIR__.'/ticket-checkins.php';
+require __DIR__.'/ticket-sales.php';
+require __DIR__.'/ticket-documents.php';
+require __DIR__.'/ticket-delivery.php';

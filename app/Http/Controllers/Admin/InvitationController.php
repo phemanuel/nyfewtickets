@@ -48,7 +48,9 @@ class InvitationController extends Controller
         $guestData = collect($data)->only(['full_name','email','phone','organisation','notes'])->all();
         if (!empty($guestData['email'])) $guestData['email'] = mb_strtolower(trim($guestData['email']));
         if ($request->hasFile('photo')) $guestData['photo_path'] = $request->file('photo')->store('ticket-guest-photos','local');
-        try { [$ticket,$token] = $issuer->issue($event,$category,$guestData,$request->user()->id); }
+        try { [$ticket,$token] = $issuer->issue($event,$category,$guestData,$request->user()->id);
+            $ticket->forceFill(['qr_token_encrypted'=>\Illuminate\Support\Facades\Crypt::encryptString($token)])->save();
+        }
         catch (\Throwable $e) {
             if (isset($guestData['photo_path'])) Storage::disk('local')->delete($guestData['photo_path']);
             throw $e;
@@ -95,7 +97,7 @@ class InvitationController extends Controller
         $url = route('tickets.verify', ['token'=>$token]);
         $qr = (new PngWriter())->write(new QrCode($url, size: 270, margin: 12));
         $qrData = base64_encode($qr->getString());
-        $pdf = Pdf::loadView('tickets.pdf',compact('ticket','qrData'))->setPaper('a5','portrait');
+        $pdf = Pdf::loadView('tickets.pdf',compact('ticket','qrData'))->setPaper('a4','landscape');
         return $pdf->download($ticket->number.'.pdf');
     }
 
