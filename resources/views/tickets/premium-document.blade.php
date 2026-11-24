@@ -107,14 +107,20 @@
     @php($ticket = $page['ticket'])
     <div class="page">
         <div class="poster">
-            <img src="{{ public_path('assets/nyfew/grand-finale-artwork.jpg') }}" alt="NYFEW Grand Finale artwork">
+            @php
+                $eventPosterPath = $ticket->event->posterFilePath();
+                $eventPosterPath = $eventPosterPath ?: public_path('images/nyfew-event-placeholder.png');
+                $eventPosterData = base64_encode(file_get_contents($eventPosterPath));
+                $eventPosterMime = mime_content_type($eventPosterPath) ?: 'image/png';
+            @endphp
+            <img src="data:{{ $eventPosterMime }};base64,{{ $eventPosterData }}" alt="{{ $ticket->event->title }} artwork">
         </div>
         <div class="right">
             <div class="topline"></div>
             <div class="content">
                 <div class="eyebrow">NYFEW · OFFICIAL ADMISSION PASS</div>
                 <div class="title">{{ $ticket->event->title }}</div>
-                <div class="subtitle">GRAND FINALE · ADMIT ONE</div>
+                <div class="subtitle">OFFICIAL NYFEW EVENT · ADMIT ONE</div>
                 <div class="rule"></div>
                 <div class="label">Registered guest</div>
                 <div class="value">{{ $ticket->guest->full_name }}</div>

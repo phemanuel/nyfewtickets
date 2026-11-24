@@ -31,6 +31,14 @@
         Ticket Sales
     </a>
 @endcan
+
+@can('checkins.scan')
+    <a href="{{ route('admin.gate.index') }}"
+       class="{{ request()->routeIs('admin.gate.*') ? 'current' : '' }}">
+        <span class="nav-icon">▣</span>
+        Gate Scanner
+    </a>
+@endcan
 @can('staff.view')<a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'current' : '' }}" @if(request()->routeIs('admin.users.*')) aria-current="page" @endif><span class="nav-icon">♙</span> Staff Accounts</a>@endcan 
 @can('roles.view')<a href="{{ route('admin.roles.index') }}" class="{{ request()->routeIs('admin.roles.*') ? 'current' : '' }}" @if(request()->routeIs('admin.roles.*')) aria-current="page" @endif><span class="nav-icon">⚿</span> Roles &amp; Permissions</a>@endcan
 </nav><div class="sidebar-bottom"><div class="sidebar-group" style="padding:0;margin:0 0 14px">Quick access</div><a href="{{ route('home') }}" target="_blank" rel="noopener">↗ &nbsp; View Public Website</a><form method="POST" action="{{ route('admin.logout') }}" style="margin-top:15px">@csrf<button class="btn btn-quiet btn-sm" type="submit" style="width:100%">Sign out</button></form></div></aside>

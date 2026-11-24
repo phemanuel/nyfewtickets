@@ -39,3 +39,5 @@ require __DIR__.'/ticket-checkins.php';
 require __DIR__.'/ticket-sales.php';
 require __DIR__.'/ticket-documents.php';
 require __DIR__.'/ticket-delivery.php';
+require __DIR__.'/event-artwork.php';
+require __DIR__.'/gate-scanner.php';

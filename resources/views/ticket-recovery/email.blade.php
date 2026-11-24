@@ -16,6 +16,14 @@
                     <div style="padding-top:14px;color:#d7b768;font-size:13px;font-weight:bold;letter-spacing:3px;">NYFEW TICKETS</div>
                 </td></tr>
                 <tr><td style="padding:8px 30px 30px;">
+                    @if(!empty($eventPosterPath) && is_file($eventPosterPath))
+                        <div style="margin:0 0 22px;text-align:center;">
+                            <img src="{{ $message->embed($eventPosterPath) }}"
+                                 alt="{{ $eventTitle }} artwork"
+                                 width="260"
+                                 style="display:block;max-width:100%;width:260px;height:auto;margin:0 auto;border-radius:10px;border:1px solid #665334;">
+                        </div>
+                    @endif
                     <h1 style="margin:12px 0 20px;color:#f4df96;font-size:26px;line-height:1.2;">Your tickets are ready</h1>
                     <p style="margin:0 0 16px;line-height:1.7;">Hello {{ $buyerName }},</p>
                     <p style="margin:0 0 16px;line-height:1.7;">Thank you for purchasing tickets for <strong>{{ $eventTitle }}</strong>.</p>
@@ -29,7 +37,7 @@
                     <p style="margin:0 0 14px;font-size:13px;color:#c5bda8;line-height:1.7;">If the link expires, <a style="color:#f4df96;" href="{{ route('ticket-recovery.index') }}">request another access link</a> using your purchase email and order reference.</p>
                     <p style="margin:0 0 22px;font-size:13px;color:#c5bda8;line-height:1.7;">Please keep your QR tickets private. This email is not an admission pass.</p>
                     <div style="border-top:1px solid #665334;padding-top:20px;margin-top:25px;color:#f4df96;font-weight:bold;">ProjectMakeMe Team</div>
-                    <div style="padding-top:6px;font-size:12px;color:#a99e88;">NYFEW Grand Finale · Official ticketing</div>
+                    <div style="padding-top:6px;font-size:12px;color:#a99e88;">NYFEW · Official event ticketing</div>
                 </td></tr>
             </table>
         </td></tr>
