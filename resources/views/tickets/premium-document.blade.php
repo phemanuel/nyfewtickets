@@ -107,13 +107,33 @@
     @php($ticket = $page['ticket'])
     <div class="page">
         <div class="poster">
-            @php
-                $eventPosterPath = $ticket->event->posterFilePath();
-                $eventPosterPath = $eventPosterPath ?: public_path('images/nyfew-event-placeholder.png');
-                $eventPosterData = base64_encode(file_get_contents($eventPosterPath));
-                $eventPosterMime = mime_content_type($eventPosterPath) ?: 'image/png';
-            @endphp
-            <img src="data:{{ $eventPosterMime }};base64,{{ $eventPosterData }}" alt="{{ $ticket->event->title }} artwork">
+            <?php
+                // DomPDF reads embedded image bytes reliably on hosted servers.
+                // Build one source value to avoid undefined MIME variables in Blade.
+                $posterSource = null;
+                $posterPath = $ticket->event?->posterFilePath();
+                if (!$posterPath || !is_file($posterPath) || !is_readable($posterPath)) {
+                    $posterPath = public_path('images/nyfew-event-placeholder.png');
+                }
+                if (is_file($posterPath) && is_readable($posterPath)) {
+                    $imageInfo = @getimagesize($posterPath);
+                    $mime = $imageInfo['mime'] ?? null;
+                    // Only embed image types expected to render in DomPDF.
+                    if (in_array($mime, ['image/jpeg', 'image/png', 'image/gif'], true)) {
+                        $bytes = @file_get_contents($posterPath);
+                        if ($bytes !== false) {
+                            $posterSource = 'data:' . $mime . ';base64,' . base64_encode($bytes);
+                        }
+                    }
+                }
+            ?>
+            @if($posterSource)
+                <img src="{{ $posterSource }}" alt="{{ $ticket->event->title }} artwork">
+            @else
+                <div style="height:210mm;background:#14110b;color:#d7b768;text-align:center;padding-top:75mm;font-size:23pt;font-weight:bold;">
+                    NYFEW<br>OFFICIAL EVENT
+                </div>
+            @endif
         </div>
         <div class="right">
             <div class="topline"></div>
